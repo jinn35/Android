@@ -1,7 +1,10 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.cs.jli.slidingmusic.MainActivity" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <item android:id="@+id/action_letter"
+          android:icon="@drawable/ic_letter"
+          android:title="@string/action_letter"
+          android:showAsAction="ifRoom" />
+    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
