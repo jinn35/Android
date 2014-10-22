@@ -39,7 +39,6 @@ public class SongsFragment extends Fragment{
 	private int currentPosition;
 	
 	public static final int REQUEST_CODE = 1;
-
 	
 	public SongsFragment(){}
 	
@@ -113,7 +112,7 @@ public class SongsFragment extends Fragment{
       		  android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,currSong);
               
               String x = trackUri.toString();
-              
+              //if x = internet url, can play media stored online
               serviceIntent.putExtra(AudioPlaybackService.EXTRA_AUDIO_URL, x);
               serviceIntent.putExtra("SONG_INFO", item);
               SongsFragment.this.getActivity().startService(serviceIntent);

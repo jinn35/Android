@@ -136,7 +136,7 @@ public class AudioPlaybackService extends Service implements OnPreparedListener,
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
             .setSmallIcon(R.drawable.ic_launcher)
             .setContentTitle(getString(R.string.app_name))
-            .setContentText(songInfo) 
+            .setContentText(songInfo)
             .setContentIntent(PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(), MainActivity.class), 0))
             .addAction(R.drawable.ic_pause_light, "Pau.", makePendingIntent(BROADCAST_PLAYBACK_PAUSE))
             .addAction(R.drawable.ic_play_light, "Play", makePendingIntent(BROADCAST_PLAYBACK_PLAY))

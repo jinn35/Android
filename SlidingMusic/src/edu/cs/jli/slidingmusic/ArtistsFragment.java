@@ -1,58 +1,105 @@
 package edu.cs.jli.slidingmusic;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import android.app.Fragment;
-import android.content.Intent;
-import android.media.MediaPlayer;
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class ArtistsFragment extends Fragment {
 	
-	private TextView mTextView;
-	static MediaPlayer mPlayer;
-	private Button buttonPlay;
-	private Button buttonStop;
+	private ArrayList<String> list;
+	private ListView listView1;
+	private ArrayAdapter<String> adapter;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
+		setHasOptionsMenu(true);
+		
         View view = inflater.inflate(R.layout.fragment_artists, container, false);
         
-        final Intent serviceIntent = new Intent(getActivity(), AudioPlaybackService.class);
-        		
-        final String MEDIA_PATH = new String(Environment.getExternalStorageDirectory().
-        		getPath());
-        mTextView = (TextView) view.findViewById(R.id.txtLabel);
-        mTextView.setText(MEDIA_PATH);
-        buttonPlay = (Button) view.findViewById(R.id.button1);
+        list = new ArrayList<String>();
+        getArtistList();
         
-        buttonPlay.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
+        listView1 = (ListView) view.findViewById(R.id.listViewArtists);
+        adapter = new ArrayAdapter<String>
+        	(ArtistsFragment.this.getActivity(),
+         			android.R.layout.simple_list_item_1, list);
 
-				serviceIntent.putExtra(AudioPlaybackService.EXTRA_AUDIO_URL, "http://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-                ArtistsFragment.this.getActivity().startService(serviceIntent);
-				
-			}
-		});
-        
-		buttonStop = (Button) view.findViewById(R.id.button2);
-		buttonStop.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				ArtistsFragment.this.getActivity().stopService(serviceIntent);
-			}
-		});
+         listView1.setAdapter(adapter);
+		
         
         return view;
     }
+	
+	
+	public void getArtistList() {
+		
+		ContentResolver musicResolver = getActivity().getContentResolver();
+		//Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+		Uri musicUri = android.provider.MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
+		Cursor musicCursor = musicResolver.query(musicUri, null, null, null, null);
+		
+		if(musicCursor!=null && musicCursor.moveToFirst()){
+			  //get columns
+			  int titleColumn = musicCursor.getColumnIndex
+			    (android.provider.MediaStore.Audio.Artists.ARTIST);
+			  int idColumn = musicCursor.getColumnIndex
+			    (android.provider.MediaStore.Audio.Artists.NUMBER_OF_ALBUMS);
+		//	  int artistColumn = musicCursor.getColumnIndex
+		//	    (android.provider.MediaStore.Audio.Albums.ARTIST);
+			  //add songs to list
+			  do {
+		//	    long thisId = musicCursor.getLong(idColumn);
+			    String thisTitle = musicCursor.getString(titleColumn);
+			    String thisArtist = musicCursor.getString(idColumn);
+			    list.add(thisTitle+" - ("+thisArtist+")");
+			  }
+			  while (musicCursor.moveToNext());
+			}
+		
+		Collections.sort(list, new Comparator<String>(){
+			  public int compare(String a, String b){
+			    return a.compareTo(b);
+			  }
+			});
+
+		}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+	    menu.findItem(R.id.action_letter).setVisible(true);
+	    super.onCreateOptionsMenu(menu, inflater);
+	} 
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar actions click
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			return true;
+		case R.id.action_letter:
+		{
+		//	Intent intent = new Intent(getActivity(), LetterPickerActivity.class);
+        //    startActivityForResult(intent, REQUEST_CODE);
+		}
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
 }
