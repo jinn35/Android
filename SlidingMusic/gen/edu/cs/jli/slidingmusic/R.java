@@ -63,25 +63,33 @@ public final class R {
         public static final int list_selector=0x7f020015;
     }
     public static final class id {
-        public static final int action_letter=0x7f0a0014;
-        public static final int action_settings=0x7f0a0013;
+        public static final int action_letter=0x7f0a001c;
+        public static final int action_settings=0x7f0a001b;
         public static final int counter=0x7f0a0006;
         public static final int drawer_layout=0x7f0a0001;
         public static final int frame_container=0x7f0a0002;
         public static final int gridView1=0x7f0a000a;
         public static final int gridViewLetterPickerActivity=0x7f0a0000;
         public static final int icon=0x7f0a0004;
-        public static final int imageButtonNextSongs=0x7f0a000e;
-        public static final int imageButtonPlayPauseSongs=0x7f0a000d;
-        public static final int imageButtonPreviousSongs=0x7f0a000c;
-        public static final int imageViewNowPlaying=0x7f0a000b;
-        public static final int listView1=0x7f0a000f;
+        public static final int imageButtonNextNow=0x7f0a0012;
+        public static final int imageButtonNextSongs=0x7f0a0016;
+        public static final int imageButtonPlayNow=0x7f0a0011;
+        public static final int imageButtonPlayPauseSongs=0x7f0a0015;
+        public static final int imageButtonPreviousNow=0x7f0a0010;
+        public static final int imageButtonPreviousSongs=0x7f0a0014;
+        public static final int imageViewNowPlaying=0x7f0a000e;
+        public static final int listView1=0x7f0a0017;
         public static final int listView1Albums=0x7f0a0007;
         public static final int listViewArtists=0x7f0a0008;
+        public static final int listViewNow=0x7f0a0013;
         public static final int list_slidermenu=0x7f0a0003;
-        public static final int textArtist=0x7f0a0011;
-        public static final int textLetterPicker=0x7f0a0010;
-        public static final int textSong=0x7f0a0012;
+        public static final int seekBar1=0x7f0a000f;
+        public static final int textArtist=0x7f0a0019;
+        public static final int textLetterPicker=0x7f0a0018;
+        public static final int textNowPlayingAlbum=0x7f0a000d;
+        public static final int textNowPlayingArtist=0x7f0a000c;
+        public static final int textNowPlayingSong=0x7f0a000b;
+        public static final int textSong=0x7f0a001a;
         public static final int title=0x7f0a0005;
         public static final int txtLabel=0x7f0a0009;
     }

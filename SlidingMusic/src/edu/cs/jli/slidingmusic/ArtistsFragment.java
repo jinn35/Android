@@ -60,8 +60,8 @@ public class ArtistsFragment extends Fragment {
 			    (android.provider.MediaStore.Audio.Artists.ARTIST);
 			  int idColumn = musicCursor.getColumnIndex
 			    (android.provider.MediaStore.Audio.Artists.NUMBER_OF_ALBUMS);
-		//	  int artistColumn = musicCursor.getColumnIndex
-		//	    (android.provider.MediaStore.Audio.Albums.ARTIST);
+			  int artistColumn = musicCursor.getColumnIndex
+			    (android.provider.MediaStore.Audio.Artists.NUMBER_OF_TRACKS);
 			  //add songs to list
 			  do {
 		//	    long thisId = musicCursor.getLong(idColumn);
@@ -82,7 +82,7 @@ public class ArtistsFragment extends Fragment {
 	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-	    menu.findItem(R.id.action_letter).setVisible(true);
+	    menu.findItem(R.id.action_letter).setVisible(false);
 	    super.onCreateOptionsMenu(menu, inflater);
 	} 
 	

@@ -217,12 +217,25 @@ public class SongsFragment extends Fragment{
 			    (android.provider.MediaStore.Audio.Media._ID);
 			  int artistColumn = musicCursor.getColumnIndex
 			    (android.provider.MediaStore.Audio.Media.ARTIST);
+			  int albumColumn = musicCursor.getColumnIndex
+				(android.provider.MediaStore.Audio.Media.ALBUM);
+			  int durationColumn = musicCursor.getColumnIndex
+						(android.provider.MediaStore.Audio.Media.DURATION);
+			  int sizeColumn = musicCursor.getColumnIndex
+						(android.provider.MediaStore.Audio.Media.SIZE);
+			  int yearColumn = musicCursor.getColumnIndex
+						(android.provider.MediaStore.Audio.Media.YEAR);
 			  //add songs to list
 			  do {
 			    long thisId = musicCursor.getLong(idColumn);
 			    String thisTitle = musicCursor.getString(titleColumn);
 			    String thisArtist = musicCursor.getString(artistColumn);
-			    songList.add(new Song(thisId, thisTitle, thisArtist));
+			    String thisAlbum = musicCursor.getString(albumColumn);
+			    String thisDuration = musicCursor.getString(durationColumn);
+			    String thisSize = musicCursor.getString(sizeColumn);
+			    String thisYear = musicCursor.getString(yearColumn);
+			    songList.add(new Song(thisId,thisTitle,thisArtist,thisAlbum,
+			    		thisDuration,thisSize,thisYear));
 			  }
 			  while (musicCursor.moveToNext());
 			}
@@ -242,8 +255,8 @@ public class SongsFragment extends Fragment{
             	super.onActivityResult(requestCode, resultCode, data);
 
                 String requiredValue = data.getStringExtra("key");
-                Toast.makeText(getActivity(), requiredValue,
-                        Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getActivity(), requiredValue,
+                  //      Toast.LENGTH_LONG).show();
                 listView1.setSelection(letterIndex.get(Integer.parseInt(requiredValue)));
         } catch (Exception ex) {
             Toast.makeText(getActivity(), ex.toString(),
