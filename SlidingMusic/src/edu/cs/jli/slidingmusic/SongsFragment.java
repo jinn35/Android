@@ -98,7 +98,7 @@ public class SongsFragment extends Fragment{
               currentPosition = position;
               
               final String item = (String) parent.getItemAtPosition(position);
-              Toast.makeText(getActivity(), item, Toast.LENGTH_LONG).show();
+              Toast.makeText(getActivity(), item, Toast.LENGTH_SHORT).show();
               
               long currSong = songList.get(position).getID();
 

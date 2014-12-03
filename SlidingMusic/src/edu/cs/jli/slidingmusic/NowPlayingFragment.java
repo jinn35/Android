@@ -43,7 +43,9 @@ public class NowPlayingFragment extends Fragment {
         {
         	
         int dur = AudioPlaybackService.mediaPlayer.getDuration();
-        
+     //   int progress  = AudioPlaybackService.mediaPlayer.getCurrentPosition();
+     //   mLeft.setText(milliConv(progress));
+     //   mRight.setText(milliConv(dur-progress));
         mSeek.setMax(dur);
         mSeek.postDelayed(onEverySecond, 1000);
         
