@@ -4,34 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textNowPlayingInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:id="@+id/textNowPlayingSong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/todo"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textNowPlayingArtist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.08"
-            android:gravity="center_horizontal"
-            android:text="@string/todo"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textNowPlayingAlbum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/todo"
-            android:textSize="16sp" />
-    </LinearLayout>
+        android:gravity="center"
+        android:text="@string/todo"
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/imageViewNowPlaying"
@@ -39,25 +18,43 @@
         android:layout_height="0dp"
         android:layout_weight="0.29"
         android:contentDescription="@string/todo"
-        android:src="@drawable/ic_whats_hot" />
-
-    <SeekBar
-        android:id="@+id/seekBar1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:src="@drawable/ic_album_art" />
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <ImageButton
-            android:id="@+id/imageButtonPreviousNow"
-            style="?android:attr/borderlessButtonStyle"
+        <TextView
+            android:id="@+id/timeleft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_previous" />
+            android:gravity="left"
+            android:text="@string/todo"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        
+        <TextView
+            android:id="@+id/timeright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/todo"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <ImageButton
             android:id="@+id/imageButtonPlayNow"
@@ -68,21 +65,6 @@
             android:contentDescription="@string/todo"
             android:gravity="center_horizontal"
             android:src="@drawable/ic_pause" />
-
-        <ImageButton
-            android:id="@+id/imageButtonNextNow"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_next" />
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/listViewNow"
-        android:layout_width="match_parent"
-        android:layout_height="110dp" >
-
-    </ListView>
 
 </LinearLayout>

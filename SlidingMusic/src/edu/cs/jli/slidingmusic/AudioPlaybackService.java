@@ -28,7 +28,7 @@ public class AudioPlaybackService extends Service implements OnPreparedListener,
     public static MediaPlayer mediaPlayer;
     String url;
     Uri u;
-    private String songInfo = "Song - Artist";
+    public static String songInfo = "Song - Artist";
  
     final BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
     {        
