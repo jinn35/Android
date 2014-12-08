@@ -15,7 +15,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:contentDescription="@string/todo"
-           android:src="@drawable/ic_previous" />
+           android:src="@drawable/ic_previous_light" />
 
        <ImageButton
            android:id="@+id/imageButtonPlayPauseSongs"
@@ -25,7 +25,7 @@
            android:layout_weight="0.16"
            android:contentDescription="@string/todo"
            android:gravity="center_horizontal"
-           android:src="@drawable/ic_play" />
+           android:src="@drawable/ic_play_light" />
 
        <ImageButton
            android:id="@+id/imageButtonNextSongs"
@@ -33,7 +33,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:contentDescription="@string/todo"
-           android:src="@drawable/ic_next" />
+           android:src="@drawable/ic_next_light" />
    </LinearLayout>
 
     <ListView

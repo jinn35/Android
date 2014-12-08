@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
+	
+	public static boolean goToNow = false;
 	
 	// nav drawer title
 	private CharSequence mDrawerTitle;
@@ -139,7 +142,11 @@ public class MainActivity extends Activity {
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			return true;
+			//Toast.makeText(getApplicationContext(), "Hi", Toast.LENGTH_SHORT).show();
+			//  getFragmentManager().beginTransaction().replace(android.R.id.content,
+		     //           new SettingsFragment()).commit();
+			Intent intent = new Intent(getApplicationContext(), SetPreferenceActivity.class);
+            startActivity(intent);
 		default:
 			return super.onOptionsItemSelected(item);
 		}

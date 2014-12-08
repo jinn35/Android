@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import edu.cs.jli.slidingmusic.AlbumsFragment.retrieve_AlbumsTask;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,7 +40,6 @@ public class SongsFragment extends Fragment{
 	private ImageButton mPrevious;
 	private ImageButton mPlayPause;
 	private ImageButton mNext;
-	private int length;
 	String[] alpha;
 	private int currentPosition;
 	
@@ -73,21 +74,13 @@ public class SongsFragment extends Fragment{
         letterIndex.add(0);
         
         getSongList();
-        
 
-        
     	listView1 = (ListView) rootView.findViewById(R.id.listView1);
     	
     	adapter3 = new LetterPickerArrayAdapter(getActivity(), testList);
         	listView1.setAdapter(adapter3);
-    	
-    	
-   // 	adapter = new ArrayAdapter<String>
-   //	(SongsFragment.this.getActivity(),
-   // 			android.R.layout.simple_list_item_1, titles);
-
-   // 	listView1.setAdapter(adapter);
 	
+        	
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -111,8 +104,27 @@ public class SongsFragment extends Fragment{
               serviceIntent.putExtra("SONG_INFO", item);
               //serviceIntent.putExtra("SONG_LIST", testList);
               SongsFragment.this.getActivity().startService(serviceIntent);
-              mPlayPause.setImageResource(R.drawable.ic_pause);
+              mPlayPause.setImageResource(R.drawable.ic_pause_light);
+              boolean pref = false;
               //NowPlaying Fragment Manager???
+              try{
+        			
+      			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+      			pref = sharedPrefs.getBoolean("pref_theme",false);
+      			//Toast.makeText(getActivity(), String.valueOf(pref), Toast.LENGTH_SHORT).show();
+      		}catch(Exception e)
+      		{
+      			Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+      		}
+              
+              if(pref==true)
+              {
+            	FragmentManager fragmentManager = getFragmentManager();
+            	NowPlayingFragment fragment = new NowPlayingFragment();
+      			fragmentManager.beginTransaction()
+      					.replace(R.id.frame_container, fragment).commit();
+              }
+              
             }
 
           });
@@ -146,7 +158,7 @@ public class SongsFragment extends Fragment{
 		      	        Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
 		      	    }
 				
-		      	    mPlayPause.setImageResource(R.drawable.ic_pause);
+		      	    mPlayPause.setImageResource(R.drawable.ic_pause_light);
 			}
 		});
         
@@ -177,7 +189,7 @@ public class SongsFragment extends Fragment{
 	      	    {
 	      	        Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
 	      	    }
-	      	        mPlayPause.setImageResource(R.drawable.ic_pause);
+	      	        mPlayPause.setImageResource(R.drawable.ic_pause_light);
 			}
 		});
         
@@ -186,18 +198,20 @@ public class SongsFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				
-				
+			if(AudioPlaybackService.mediaPlayer!=null)
+			{
 				if(AudioPlaybackService.mediaPlayer.isPlaying())
 				{
-					mPlayPause.setImageResource(R.drawable.ic_play);
+					mPlayPause.setImageResource(R.drawable.ic_play_light);
 					//length = AudioPlaybackService.mediaPlayer.getCurrentPosition();
 					AudioPlaybackService.mediaPlayer.pause();
 				}else
 				{
-					mPlayPause.setImageResource(R.drawable.ic_pause);
+					mPlayPause.setImageResource(R.drawable.ic_pause_light);
 					//AudioPlaybackService.mediaPlayer.seekTo(length);
 					AudioPlaybackService.mediaPlayer.start();
 				}
+			}
 			}
 		});
         	return rootView;
@@ -235,7 +249,9 @@ public class SongsFragment extends Fragment{
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_settings:
+		{
 			return true;
+		}
 		case R.id.action_letter:
 		{
 			Intent intent = new Intent(getActivity(), LetterPickerActivity.class);

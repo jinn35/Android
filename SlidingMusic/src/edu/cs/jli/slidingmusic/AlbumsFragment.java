@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import edu.cs.jli.slidingmusic.ArtistsFragment.retrieve_ArtistsTask;
-
 import android.app.Fragment;
 import android.content.ContentResolver;
 import android.database.Cursor;

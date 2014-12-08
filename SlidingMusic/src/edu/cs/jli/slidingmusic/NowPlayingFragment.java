@@ -81,11 +81,11 @@ public class NowPlayingFragment extends Fragment {
 				
 				if(AudioPlaybackService.mediaPlayer.isPlaying())
 				{
-					mPlayPause.setImageResource(R.drawable.ic_play);
+					mPlayPause.setImageResource(R.drawable.ic_play_light);
 					AudioPlaybackService.mediaPlayer.pause();
 				}else
 				{
-					mPlayPause.setImageResource(R.drawable.ic_pause);
+					mPlayPause.setImageResource(R.drawable.ic_pause_light);
 					AudioPlaybackService.mediaPlayer.start();
 				}
 				}

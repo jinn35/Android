@@ -16,11 +16,13 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light" >
-     <service
-			android:name="edu.cs.jli.slidingmusic.AudioPlaybackService"
+        android:theme="@android:style/Theme.Holo" >
+        <service
+            android:name=".AudioPlaybackService"
             android:enabled="true"
-            android:label="Audio-playback service" ></service>
+            android:label="Audio-playback service" >
+        </service>
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -35,6 +37,10 @@
         <activity
             android:name=".LetterPickerActivity"
             android:label="@string/title_activity_letter_picker" >
+        </activity>
+        <activity
+            android:name=".SetPreferenceActivity"
+            android:label="@string/title_activity_set_preference" >
         </activity>
     </application>
 
