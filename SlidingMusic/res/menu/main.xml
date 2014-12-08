@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item android:id="@+id/action_letter"
-          android:icon="@drawable/ic_letter"
+          android:icon="@drawable/ic_letter_light"
           android:title="@string/action_letter"
           android:showAsAction="ifRoom" />
     
